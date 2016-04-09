@@ -13,41 +13,49 @@ const Tree = React.createClass({
   render() {
     const params = Object.assign({}, this.state.treeParams.toJS(), this.props)
     const children = []
-    const lengthVar = params.length*params.branchLengthVar*params.rand()
-    const x2 = params.x + (params.length+lengthVar) * params.dx
-    const y2 = params.y + (params.length+lengthVar) * params.dy
-    if (params.depth < params.maxDepth) {
-      // const branches = Math.ceil(params.branchingFactor+params.rand())
-      for (var i = 0; i < params.branchingFactor; i++) {
-        const flip = (i % 2 == 0 ? 1 : -1)
-        const angle = flip * params.angle + params.branchAngleVar*params.rand()
-        const dx2 = Math.cos(angle) * params.dx + Math.sin(angle) * params.dy;
-        const dy2 = -Math.sin(angle) * params.dx + Math.cos(angle) * params.dy;
-        const childWidth=0.66+0.3*params.branchWidthVar*params.rand()
-        const childLength=0.66+0.3*params.branchLengthVar*params.rand()
-        children.push(
-          <Tree
-            key={'d'+(params.depth+1)+'b'+i}
-            depth={params.depth+1}
-            x={x2} y={y2}
-            dx={dx2} dy={dy2}
-            strokeWidth={params.strokeWidth*childWidth}
-            length={params.length*childLength}
-            rand={params.rand}
-          />
-        )
-      }
+    const length = params.depth == 0 ? params.trunkLength : params.length
+    const x2 = params.x + length * params.dx
+    const y2 = params.y + length * params.dy
+
+    if (params.depth < 6) {
+      var angle = -params.initialAngle+params.rand(-0.01, 0.01)*Math.PI
+      var dx2 = Math.cos(angle) * params.dx + Math.sin(angle) * params.dy;
+      var dy2 = -Math.sin(angle) * params.dx + Math.cos(angle) * params.dy;
+      children.push(
+        <Tree
+          key={'d'+(params.depth+1)+'bl'}
+          depth={params.depth+1}
+          x={x2} y={y2}
+          dx={dx2} dy={dy2}
+          strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
+          length={params.length*params.rand(0.95, 1.2)}
+          rand={params.rand}
+        />
+      )
+      var angle = params.initialAngle+params.rand(-0.01, 0.01)*Math.PI
+      dx2 = Math.cos(angle) * params.dx + Math.sin(angle) * params.dy;
+      dy2 = -Math.sin(angle) * params.dx + Math.cos(angle) * params.dy;
+      children.push(
+        <Tree
+          key={'d'+(params.depth+1)+'br'}
+          depth={params.depth+1}
+          x={x2} y={y2}
+          dx={dx2} dy={dy2}
+          strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
+          length={params.length*params.rand(0.95, 1.2)}
+          rand={params.rand}
+        />
+      )
+    } else if (params.depth < 12) {
+
     }
-    // Retreat the start into the last item
-    const x1 = params.x - (params.length*0.1) * params.dx
-    const y1 = params.y - (params.length*0.1) * params.dy
-    const widthVar = params.strokeWidth*params.branchWidthVar*params.rand()
+
     return (
       <g>
         <line
-          x1={x1} x2={x2}
-          y1={y1} y2={y2}
-          strokeWidth={params.strokeWidth+widthVar}
+          x1={params.x} x2={x2}
+          y1={params.y} y2={y2}
+          strokeWidth={params.strokeWidth}
           stroke="black"
         />
         {children}

@@ -17,13 +17,14 @@ const Controls = React.createClass({
   limits: {
     'branchingFactor': [1, 4, 1],
     'maxDepth': [1, 6, 1],
-    'angle': [0, 0.5*Math.PI, 0.01],
+    'initialAngle': [-0.5*Math.PI, 0.5*Math.PI, 0.01],
     'seed': [0, 100, 1],
     'branchAngleVar': [0, 0.5*Math.PI, 0.001],
     'branchLengthVar': [0, 1, 0.01],
     'branchWidthVar': [0, 1, 0.01],
     'initialLength': [0, 50, 0.5],
     'initialWidth': [0, 10, 0.1],
+    'trunkLength': [0, 50, 1],
   },
 
   render() {

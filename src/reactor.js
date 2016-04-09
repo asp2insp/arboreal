@@ -6,15 +6,16 @@ myReactor.registerStores({
   treeParams: Store({
     getInitialState() {
       return toImmutable({
-        'branchingFactor': 2,
+        // 'branchingFactor': 2,
+        'trunkLength': 25,
         'maxDepth': 6,
-        'angle': 0.2 * Math.PI,
+        'initialAngle': 0,
         'seed': 1,
-        'branchAngleVar': 0.1*Math.PI,
-        'branchLengthVar': 0.1,
-        'branchWidthVar': 0.1,
-        'initialLength': 25,
-        'initialWidth': 6,
+        // 'branchAngleVar': 0.1*Math.PI,
+        // 'branchLengthVar': 0.1,
+        // 'branchWidthVar': 0.1,
+        'initialLength': 5,
+        'initialWidth': 2,
       });
     },
 

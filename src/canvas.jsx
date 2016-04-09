@@ -16,8 +16,8 @@ const Canvas = React.createClass({
     const style = this.props.style;
     const state = this.state.treeParams.toJS()
     const mt = new MersenneTwister(state.seed);
-    const getRand = function(mt) {
-      return this.random_incl()-0.5
+    const getRand = function(min, max) {
+      return this.random_incl()*(max-min) + min
     }.bind(mt)
     return (
       <svg style={style} viewBox="0 0 100 100">
@@ -25,7 +25,7 @@ const Canvas = React.createClass({
           x={50-state.initialWidth/2} y={100}
           length={state.initialLength} strokeWidth={state.initialWidth}
           depth={0} dy={-1} dx={0}
-          rand={getRand}
+          rand={getRand} angle={state.initialAngle}
         />
       </svg>
     )
