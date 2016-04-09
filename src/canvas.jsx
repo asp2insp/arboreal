@@ -25,7 +25,7 @@ const Canvas = React.createClass({
           x={50-state.initialWidth/2} y={100}
           length={state.initialLength} strokeWidth={state.initialWidth}
           depth={0} dy={-1} dx={0}
-          rand={getRand} angle={state.initialAngle}
+          rand={getRand} currentAngle={state.initialAngle}
         />
       </svg>
     )

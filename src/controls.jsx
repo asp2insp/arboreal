@@ -16,7 +16,8 @@ const Controls = React.createClass({
 
   limits: {
     'branchingFactor': [1, 4, 1],
-    'maxDepth': [1, 6, 1],
+    'branchDepth': [1, 6, 1],
+    'twigDepth': [1, 6, 1],
     'initialAngle': [-0.5*Math.PI, 0.5*Math.PI, 0.01],
     'seed': [0, 100, 1],
     'branchAngleVar': [0, 0.5*Math.PI, 0.001],
