@@ -26,6 +26,7 @@ const Controls = React.createClass({
     'initialLength': [0, 50, 0.5],
     'initialWidth': [0, 10, 0.1],
     'trunkLength': [0, 50, 1],
+    'numLeaves': [0, 10, 1],
   },
 
   render() {

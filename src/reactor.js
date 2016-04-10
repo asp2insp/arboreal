@@ -12,6 +12,7 @@ myReactor.registerStores({
         'twigDepth': 6,
         'initialAngle': -0.331,
         'seed': 1,
+        'numLeaves': 0,
         // 'branchAngleVar': 0.1*Math.PI,
         // 'branchLengthVar': 0.1,
         // 'branchWidthVar': 0.1,

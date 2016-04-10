@@ -1,5 +1,6 @@
 import React from 'react';
 import { myReactor, getters } from './reactor'
+import { Leaf } from './leaf'
 
 const Tree = React.createClass({
   mixins: [myReactor.ReactMixin],
@@ -20,6 +21,14 @@ const Tree = React.createClass({
     const length = params.depth == 0 ? params.trunkLength : params.length
     const x2 = params.x + length * params.dx
     const y2 = params.y + length * params.dy
+
+    if (params.depth >= 12) {
+      for (var i = 0; i < params.numLeaves; i++) {
+        children.push(
+          <Leaf key={'d'+params.depth+'leaf'+i}/>
+        )
+      }
+    }
 
     if (params.depth < params.branchDepth) {
       var angle = -params.initialAngle+params.rand(-0.01, 0.01)*Math.PI
