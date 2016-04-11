@@ -22,10 +22,14 @@ const Tree = React.createClass({
     const x2 = params.x + length * params.dx
     const y2 = params.y + length * params.dy
 
-    if (params.depth >= 12) {
+    if (params.depth >= 4) {
       for (var i = 0; i < params.numLeaves; i++) {
+        const angle = Math.atan2(params.dy, params.dx)
         children.push(
-          <Leaf key={'d'+params.depth+'leaf'+i}/>
+          <Leaf key={'d'+params.depth+'leaf'+i}
+            cx={x2} cy={y2} angle={angle+params.rand(-Math.PI/4, Math.PI/4)}
+            scale={length}
+          />
         )
       }
     }
