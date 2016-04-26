@@ -17,7 +17,7 @@ const Layout = {
     alignItems: 'stretch',
   },
   Drawing: {
-    flexGrow: 4,
+    flexGrow: 6,
   },
   Controls: {
     flexGrow: 1,

@@ -7,17 +7,17 @@ myReactor.registerStores({
     getInitialState() {
       return toImmutable({
         // 'branchingFactor': 2,
-        'trunkLength': 25,
+        'trunkLength': 14,
         'branchDepth': 6,
         'twigDepth': 6,
         'initialAngle': -0.331,
         'seed': 1,
-        'numLeaves': 1,
+        'numLeaves': 0,
         // 'branchAngleVar': 0.1*Math.PI,
         // 'branchLengthVar': 0.1,
         // 'branchWidthVar': 0.1,
-        'initialLength': 5,
-        'initialWidth': 2,
+        'initialLength': 3.5,
+        'initialWidth': 1.4,
       });
     },
 

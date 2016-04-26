@@ -46,10 +46,11 @@ const Tree = React.createClass({
           dx={dx2} dy={dy2}
           strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.95, 1.2)}
-          rand={params.rand} currentAngle={params.initialAngle}
+          rand={params.rand} currentAngle={params.direction*params.initialAngle}
+          direction={params.direction}
         />
       )
-      var angle = params.currentAngle+params.rand(-0.01, 0.01)*Math.PI
+      var angle = params.initialAngle+params.rand(-0.01, 0.01)*Math.PI
       dx2 = Math.cos(angle) * params.dx + Math.sin(angle) * params.dy;
       dy2 = -Math.sin(angle) * params.dx + Math.cos(angle) * params.dy;
       children.push(
@@ -60,7 +61,8 @@ const Tree = React.createClass({
           dx={dx2} dy={dy2}
           strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.95, 1.2)}
-          rand={params.rand} currentAngle={params.initialAngle}
+          rand={params.rand} currentAngle={params.direction*params.initialAngle}
+          direction={params.direction}
         />
       )
     } else if (params.depth < params.branchDepth+params.twigDepth) {
@@ -76,6 +78,7 @@ const Tree = React.createClass({
           strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.5, 0.95)}
           rand={params.rand} currentAngle={angle}
+          direction={params.direction}
         />
       )
     }
