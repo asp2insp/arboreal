@@ -24,7 +24,7 @@ const Canvas = React.createClass({
     const state = this.state.treeParams.toJS()
 
     return (
-      <svg style={style} viewBox="0 0 100 100">
+      <svg style={style} viewBox="0 0 100 100" id="canvas">
         <Tree
           x={25-state.initialWidth/2} y={80}
           length={state.initialLength} strokeWidth={state.initialWidth}

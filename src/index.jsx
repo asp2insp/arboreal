@@ -20,9 +20,12 @@ const Layout = {
     flexGrow: 6,
   },
   Controls: {
-    flexGrow: 1,
+    flexGrow: 2,
     paddingLeft: '10px',
     borderLeft: '1px solid black',
+  },
+  Copy: {
+    flexGrow: 1,
   }
 }
 
@@ -30,6 +33,7 @@ ReactDOM.render(
   (<div style={Layout.Top}>
     <Canvas style={Layout.Drawing} />
     <Controls style={Layout.Controls} />
+    <textarea id="copy" style={Layout.Copy}></textarea>
   </div>),
   document.getElementById('content')
 )

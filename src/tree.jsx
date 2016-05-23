@@ -12,7 +12,7 @@ const Tree = React.createClass({
   },
 
   prune() {
-    actions.prune(this.getHash())
+    actions.prune(this.hash)
   },
 
   getHash() {
@@ -22,11 +22,12 @@ const Tree = React.createClass({
 
   render() {
     const params = Object.assign({}, this.state.treeParams.toJS(), this.props)
+    this.hash = params.rand(0, Number.MAX_SAFE_INTEGER)
     const children = []
     const length = params.depth == 0 ? params.trunkLength : params.length
     const x2 = params.x + length * params.dx
     const y2 = params.y + length * params.dy
-    const strokeWidth = params.pruned[this.getHash()] ? 0 : params.strokeWidth
+    const strokeWidth = params.pruned[this.hash] ? 0 : params.strokeWidth
 
     if (params.depth >= 4) {
       for (var i = 0; i < params.numLeaves; i++) {

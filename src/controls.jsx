@@ -14,6 +14,16 @@ const Controls = React.createClass({
     actions.setParam(ev.target.id, parseFloat(ev.target.value))
   },
 
+  exporter() {
+    const h = document.getElementById('canvas').outerHTML
+
+    var input = document.getElementById('copy');
+    input.value = h;
+    input.focus();
+    input.select();
+    document.execCommand('Copy');
+  },
+
   limits: {
     'branchingFactor': [1, 4, 1],
     'branchDepth': [1, 6, 1],
@@ -37,6 +47,7 @@ const Controls = React.createClass({
     const dispatch = this.dispatch
     const controls = []
     const displays = []
+    const exporter = this.exporter
     for (var key in state) {
       if (this.excludes.includes(key)) {
         continue
@@ -61,6 +72,7 @@ const Controls = React.createClass({
         <div>
           <button onClick={actions.save}>Save</button>
           <button onClick={actions.load}>Load</button>
+          <button onClick={exporter}>Export</button>
         </div>
       </div>
     )
