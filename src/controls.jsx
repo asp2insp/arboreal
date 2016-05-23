@@ -29,6 +29,8 @@ const Controls = React.createClass({
     'numLeaves': [0, 10, 1],
   },
 
+  excludes: ['pruned'],
+
   render() {
     const style = this.props.style
     const state = this.state.treeParams.toJS()
@@ -36,6 +38,9 @@ const Controls = React.createClass({
     const controls = []
     const displays = []
     for (var key in state) {
+      if (this.excludes.includes(key)) {
+        continue
+      }
       const def = state[key]
       const limits = this.limits[key]
       controls.push(
@@ -52,6 +57,10 @@ const Controls = React.createClass({
         <h2>Controls</h2>
         <div>
           {controls}
+        </div>
+        <div>
+          <button onClick={actions.save}>Save</button>
+          <button onClick={actions.load}>Load</button>
         </div>
       </div>
     )

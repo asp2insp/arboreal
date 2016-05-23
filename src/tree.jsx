@@ -1,5 +1,5 @@
 import React from 'react';
-import { myReactor, getters } from './reactor'
+import { myReactor, getters, actions } from './reactor'
 import { Leaf } from './leaf'
 
 const Tree = React.createClass({
@@ -12,7 +12,12 @@ const Tree = React.createClass({
   },
 
   prune() {
-    this.setState({'pruned': true})
+    actions.prune(this.getHash())
+  },
+
+  getHash() {
+    const p = this.props
+    return `${p.depth}|${p.x}|${p.y}|${p.dx}|${p.dy}`
   },
 
   render() {
@@ -21,6 +26,7 @@ const Tree = React.createClass({
     const length = params.depth == 0 ? params.trunkLength : params.length
     const x2 = params.x + length * params.dx
     const y2 = params.y + length * params.dy
+    const strokeWidth = params.pruned[this.getHash()] ? 0 : params.strokeWidth
 
     if (params.depth >= 4) {
       for (var i = 0; i < params.numLeaves; i++) {
@@ -44,7 +50,7 @@ const Tree = React.createClass({
           depth={params.depth+1}
           x={x2} y={y2}
           dx={dx2} dy={dy2}
-          strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
+          strokeWidth={strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.95, 1.2)}
           rand={params.rand} currentAngle={params.direction*params.initialAngle}
           direction={params.direction}
@@ -59,7 +65,7 @@ const Tree = React.createClass({
           depth={params.depth+1}
           x={x2} y={y2}
           dx={dx2} dy={dy2}
-          strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
+          strokeWidth={strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.95, 1.2)}
           rand={params.rand} currentAngle={params.direction*params.initialAngle}
           direction={params.direction}
@@ -75,7 +81,7 @@ const Tree = React.createClass({
           depth={params.depth+1}
           x={x2} y={y2}
           dx={dx2} dy={dy2}
-          strokeWidth={params.strokeWidth*params.rand(0.7, 0.9)}
+          strokeWidth={strokeWidth*params.rand(0.7, 0.9)}
           length={params.length*params.rand(0.5, 0.95)}
           rand={params.rand} currentAngle={angle}
           direction={params.direction}
@@ -83,22 +89,17 @@ const Tree = React.createClass({
       )
     }
     const prune=this.prune
-
-    if (this.state.pruned) {
-      return (<g></g>)
-    } else {
-      return (
-        <g>
-          <line
-            x1={params.x} x2={x2}
-            y1={params.y} y2={y2}
-            strokeWidth={params.strokeWidth}
-            stroke="black" onClick={prune}
-          />
-          {children}
-        </g>
-      )
-    }
+    return (
+      <g>
+        <line
+          x1={params.x} x2={x2}
+          y1={params.y} y2={y2}
+          strokeWidth={strokeWidth}
+          stroke="black" onClick={prune}
+        />
+        {children}
+      </g>
+    )
   }
 })
 

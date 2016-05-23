@@ -26,15 +26,16 @@ const Canvas = React.createClass({
     return (
       <svg style={style} viewBox="0 0 100 100">
         <Tree
-          x={25-state.initialWidth/2} y={100}
+          x={25-state.initialWidth/2} y={80}
           length={state.initialLength} strokeWidth={state.initialWidth}
           depth={0} dy={-1} dx={0}
           direction={1}
           rand={createRand(state.seed)} currentAngle={state.initialAngle}
           leafRand={createRand(state.seed+1)}
         />
+
         <Tree
-          x={75-state.initialWidth/2} y={100}
+          x={75-state.initialWidth/2} y={80}
           length={state.initialLength} strokeWidth={state.initialWidth}
           depth={0} dy={-1} dx={0}
           direction={-1}
